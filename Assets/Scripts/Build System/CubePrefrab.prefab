@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 2548399260656930686}
   - component: {fileID: 7292355237773076002}
   - component: {fileID: 2671289091093989713}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CubePrefrab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,6 +302,12 @@ MonoBehaviour:
   right: {fileID: 6444496388232835986}
   front: {fileID: 5651729537684972922}
   back: {fileID: 642997891156487908}
+  topBlocked: 0
+  bottomBlocked: 0
+  leftBlocked: 0
+  rightBlocked: 0
+  frontBlocked: 0
+  backBlocked: 0
 --- !u!54 &2671289091093989713
 Rigidbody:
   m_ObjectHideFlags: 0
