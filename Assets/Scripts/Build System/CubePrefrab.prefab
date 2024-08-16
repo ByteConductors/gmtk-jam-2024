@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4406682356899197353}
   - component: {fileID: 7200084377997219343}
   - component: {fileID: 1695859262843122722}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 2129142138013493483}
   - component: {fileID: 6806735743438379584}
   - component: {fileID: 3437034344267670251}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 2548399260656930686}
   - component: {fileID: 7292355237773076002}
   - component: {fileID: 2671289091093989713}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CubePrefrab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,10 +324,10 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!1 &2438602005733843382
 GameObject:
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 7473323737738133405}
   - component: {fileID: 799285152521223897}
   - component: {fileID: 6161537943409815527}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +423,7 @@ GameObject:
   - component: {fileID: 509118436558212158}
   - component: {fileID: 6678982882033598003}
   - component: {fileID: 7030979171864983614}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 699746911339013167}
   - component: {fileID: 8795011335285322360}
   - component: {fileID: 1889357750272327465}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -589,7 +589,7 @@ GameObject:
   - component: {fileID: 3742347444971780274}
   - component: {fileID: 4716714080950891176}
   - component: {fileID: 3343682326964137866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
