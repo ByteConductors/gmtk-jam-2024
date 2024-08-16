@@ -20,6 +20,7 @@ public class TargetTracker : MonoBehaviour
     void Start()
     {
         ahead = new GameObject("ahead");
+        ahead.transform.parent = transform;
         meshRenderer = trackedObject.gameObject.GetComponent<MeshRenderer>();
     }
 
