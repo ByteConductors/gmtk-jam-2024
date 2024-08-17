@@ -35,6 +35,7 @@ public class BuildSystem : MonoBehaviour
                     newCube.OnGridLocation = BuildingCube.CalculateLocation(cube.OnGridLocation, direction);
                     newCube.transform.position = hitData.transform.position + hitData.normal;
                     newCube.transform.rotation = hitData.transform.rotation;
+                    newCube.GetComponent<AudioSource>().Play();
 
                     if (!Tower.Instance.IsSupported(newCube.OnGridLocation, out var unsupportedBlocks))
                     {
