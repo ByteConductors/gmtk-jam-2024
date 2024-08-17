@@ -1,10 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Build_System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Workers;
 
 public class BuildSystem : MonoBehaviour
 {
@@ -40,8 +37,12 @@ public class BuildSystem : MonoBehaviour
                     newCube.transform.position = hitData.transform.position + hitData.normal;
                     newCube.transform.rotation = hitData.transform.rotation;
                     newCube.SetColor(selectedQueueBlock.WorkerColor);
+                    
+                    WorkerManager.Instance.AddColorSpace(selectedQueueBlock.WorkerColor);
+                    
                     Queue.RerollSlot(Queue.SelectedBlock);
                     newCube.GetComponent<AudioSource>().Play();
+                    
 
                     if (!Tower.Instance.IsSupported(newCube.OnGridLocation, out var unsupportedBlocks))
                     {
