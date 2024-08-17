@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 85d5f0524d38ee2478a606e350715324
+<<<<<<<< HEAD:Assets/Scripts/UI/BuildingUI/UI_BlockSelector.cs.meta
+guid: cd1b1d4aeec3caa44b8544fac8b372cd
+========
+guid: e2345cec0fffa94489862d0cf461ceb2
+>>>>>>>> 4f2cd7d (ScoreSystem Let's go):Assets/Scripts/Core/ScroeSystem.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

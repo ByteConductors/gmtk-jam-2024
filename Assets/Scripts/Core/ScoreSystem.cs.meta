@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/UI/GameOver/GameOverUI Controler.cs.meta
-guid: 471bb0a42729c75478140b8cb6ad50ff
+<<<<<<<< HEAD:Assets/Scripts/UI/BuildingUI/UI_BlockSelector.cs.meta
+guid: cf4e6cf133a19b74cb9534bbc3e963cc
 ========
 guid: e2345cec0fffa94489862d0cf461ceb2
->>>>>>>> origin/feature/scoreSystem:Assets/Scripts/Core/ScroeSystem.cs.meta
+>>>>>>>> 4f2cd7d (ScoreSystem Let's go):Assets/Scripts/Core/ScroeSystem.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
