@@ -26,7 +26,11 @@ namespace Core
             }
 
             _instance = this;
-            WorkerManager.Instance?.onNewWorkerSpaceRequested.AddListener(_ => CheckGameOver());
+        }
+
+        private void Start()
+        {
+            WorkerManager.Instance.onNewWorkerSpaceRequested.AddListener(_ => CheckGameOver());
         }
 
         private void CheckGameOver()

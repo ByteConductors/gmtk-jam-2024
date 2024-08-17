@@ -1,25 +1,22 @@
 using UnityEngine;
 using Image = UnityEngine.UI.Image;
-using ColorPalette = Color_Palettes.ColorPalette;
 
-public class UI_QueueIcon : MonoBehaviour
+namespace UI.ingame
 {
-    public GameObject icon;
-    private Image image;
+    public class UIQueueIcon : MonoBehaviour
+    {
+        public GameObject icon;
+        private Image _image;
     
-    public void setIconColor(Color color)
-    {
-        
-        Debug.Log("setIconColorr");
-        Debug.Log(transform.GetChild(0).name);
-        image = icon.GetComponent<Image>();
-        Debug.Log(image);
-        image.color = color;
-        Debug.Log(image.color);
-    }
+        public void SetIconColor(Color color)
+        {
+            _image = icon.GetComponent<Image>();
+            _image.color = color;
+        }
 
-    void Start()
-    {
-        transform.SetAsFirstSibling();
+        void Start()
+        {
+            transform.SetAsFirstSibling();
+        }
     }
 }
