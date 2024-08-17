@@ -51,7 +51,7 @@ namespace Build_System
         {
             if (Time.time >= nextBlockTime && !isPaused)
             {
-                nextBlockTime = Mathf.Exp(-(iteration/streatchFunction))*maxSpaceRequestDelayInSeconds + minSpaceRequestDelayInSeconds + Time.time;;
+                nextBlockTime = (Mathf.Exp(-(iteration/streatchFunction))*maxSpaceRequestDelayInSeconds + minSpaceRequestDelayInSeconds)/2.0f+ Time.time;
                 GenerateBlock();
             }
         }
