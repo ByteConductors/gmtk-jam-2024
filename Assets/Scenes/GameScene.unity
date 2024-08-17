@@ -327,6 +327,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   nextBlockDelay: 3
+  minSpaceRequestDelayInSeconds: 0.1
+  maxSpaceRequestDelayInSeconds: 3
+  streatchFunction: 40
 --- !u!114 &100854067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4959,11 +4962,27 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7292355237773076002, guid: 0a1d6d72aa93e9642978ea2d5130ba3f, type: 3}
+      propertyPath: colors.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292355237773076002, guid: 0a1d6d72aa93e9642978ea2d5130ba3f, type: 3}
       propertyPath: colors.Array.data[3].b
       value: 0.8333335
       objectReference: {fileID: 0}
     - target: {fileID: 7292355237773076002, guid: 0a1d6d72aa93e9642978ea2d5130ba3f, type: 3}
       propertyPath: colors.Array.data[3].g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292355237773076002, guid: 0a1d6d72aa93e9642978ea2d5130ba3f, type: 3}
+      propertyPath: colors.Array.data[4].b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292355237773076002, guid: 0a1d6d72aa93e9642978ea2d5130ba3f, type: 3}
+      propertyPath: colors.Array.data[4].g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292355237773076002, guid: 0a1d6d72aa93e9642978ea2d5130ba3f, type: 3}
+      propertyPath: colors.Array.data[4].r
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:

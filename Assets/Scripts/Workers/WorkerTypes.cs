@@ -5,6 +5,7 @@ namespace Workers
         Red,
         Green,
         Blue,
-        Purple
+        Purple,
+        Gray
     }
 }

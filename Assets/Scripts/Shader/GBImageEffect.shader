@@ -96,7 +96,7 @@ Shader "Effects/ReGBCamera/PaletteShader"
                 
                 float2 paletteUV;
                 
-                if (s < .2f)
+                if (s < .1f)
                     paletteUV = float2(L,0.1f);
 
                 else if (h <= 0.125f || h > 0.875f)

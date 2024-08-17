@@ -42,7 +42,6 @@ namespace UI.BuildingUI
             queue.OnBlockDestroy.AddListener(b =>
             {
                 Destroy(icons.Find(i => i.Block == b).gameObject);
-                
             });
         }
     }

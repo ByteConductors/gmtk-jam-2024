@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Build_System;
 using UnityEngine;
+using Workers;
 
 public class Tower : MonoBehaviour
 {
@@ -23,6 +25,18 @@ public class Tower : MonoBehaviour
     {
         _instance = this;
         PlaceBlocks(Vector3Int.zero, initialCube);
+    }
+
+    private void Start()
+    {
+        WorkerManager.Instance.onWorkerQueueRelieved.AddListener(GreyOutBlocks);
+    }
+
+    private void GreyOutBlocks(WorkerColor color)
+    {
+        KeyValuePair<Vector3Int, BuildingCube> cube = components.FirstOrDefault((block) => block.Value.colorIndex == (int)color);
+        Debug.Log("Greyes Out Block");
+        cube.Value.SetColor(WorkerColor.Gray);
     }
 
     public bool PlaceBlocks(Vector3Int location, BuildingCube cube)
