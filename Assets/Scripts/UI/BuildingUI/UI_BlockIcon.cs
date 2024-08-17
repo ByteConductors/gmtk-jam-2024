@@ -13,7 +13,7 @@ namespace UI.BuildingUI
         [SerializeField] private Vector3 targetPosition;
         
         [SerializeField] private Button button;
-        public int Id { get; set; }
+        public BlockQueue.GeneratedBlock Block { get; set; }
 
         private void Awake()
         {
@@ -24,10 +24,11 @@ namespace UI.BuildingUI
             });
         }
 
-        public void SetIcon(BlockQueue.GeneratedBlock block)
+        public void SetBlock(BlockQueue.GeneratedBlock block)
         {
-            blockIcon.color = UI_BlockSelector.Instance.colorPalette.colors[(int)block.WorkerColor + 1];
+            blockIcon.color = UI_BlockSelector.Instance.colorPalette.displayColors[(int)block.WorkerColor + 1];
             shapeIcon.sprite = UI_BlockSelector.Instance.colorPalette.blockShapeSprites[(int)block.Shape];
+            Block = block;
         }
 
         public void SetSelected(bool selected)

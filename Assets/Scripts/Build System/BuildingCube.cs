@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Workers;
 using Random = UnityEngine.Random;
@@ -8,10 +9,11 @@ namespace Build_System
     {
         [SerializeField] public Color[] colors;
         [SerializeField] public Side[] sideObjects;
-        [SerializeField] private int colorIndex = -1;
+        [SerializeField] public int colorIndex = -1;
+
+        [SerializeField] public Boolean isInitialBlock = false;
     
-    
-        private Color _color;
+        public Color color;
         private Vector3Int _onGridLocation;
         public Vector3Int OnGridLocation
         {
@@ -32,11 +34,12 @@ namespace Build_System
             if (colorIndex >= 0) SetColor((WorkerColor)colorIndex);
         }
 
-        public void SetColor(WorkerColor color)
+        public void SetColor(WorkerColor newColor)
         {
-            var index = (int)color;
+            var index = (int)newColor;
+            colorIndex = index;
             GetComponent<MeshRenderer>().material.color = colors[index];
-            _color = colors[index];
+            color = colors[index];
         }
 
         public bool placeable(Vector3 normal, BuildShape shape)

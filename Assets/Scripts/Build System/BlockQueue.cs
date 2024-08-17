@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using UnityEngine.Events;
 using Workers;
@@ -14,34 +16,76 @@ namespace Build_System
             public BuildShape Shape => _shape;
             private readonly WorkerColor _workerColor = (WorkerColor)Random.Range(0, 4);
             public WorkerColor WorkerColor => _workerColor;
+
+            public GeneratedBlock() { }
+            public GeneratedBlock(WorkerColor workerColor)
+            {
+                _workerColor = workerColor;
+            }
         }
 
-        private GeneratedBlock[] _blocks = new GeneratedBlock[5];
-        public GeneratedBlock[] Blocks => _blocks;
+        private List<GeneratedBlock> _blocks = new ();
+        public List<GeneratedBlock> Blocks => _blocks;
 
-        public UnityEvent<int, GeneratedBlock> OnBlockGenerate = new();
-        public int SelectedBlock { get; set; }
+        public UnityEvent<GeneratedBlock> OnBlockGenerate = new();
+        public UnityEvent<GeneratedBlock> OnBlockDestroy = new();
+        public GeneratedBlock SelectedBlock { get; set; }
+        private int blockType = 0;
+        
+        [SerializeField] private float nextBlockDelay = 5;
+        private float nextBlockTime = 0;
+        
+        private Boolean isPaused = false;
+        
+        public float minSpaceRequestDelayInSeconds = 0.1f;
+        public float maxSpaceRequestDelayInSeconds = 3;
+        public float streatchFunction = 40;
+        private long iteration = 1;
 
-        public GeneratedBlock[] GenerateBlocks()
+        public void GenerateBlocks(int count)
         {
-            for (int i = 0; i < _blocks.Length; i++) RerollSlot(i);
-            return _blocks;
+            for (int i = 0; i < count; i++) GenerateBlock();
         }
 
-        public void RerollSlot(int i)
+        private void FixedUpdate()
         {
-            _blocks[i] = new GeneratedBlock();
-            OnBlockGenerate.Invoke(i,_blocks[i]);
+            if (Time.time >= nextBlockTime && !isPaused)
+            {
+                nextBlockTime = (Mathf.Exp(-(iteration/streatchFunction))*maxSpaceRequestDelayInSeconds + minSpaceRequestDelayInSeconds)/2.0f+ Time.time;
+                GenerateBlock();
+            }
+        }
+
+        public GeneratedBlock GenerateBlock()
+        {
+            if (_blocks.Count >= 5) return null;
+            if (blockType == 4) blockType = 0;
+            var block = new GeneratedBlock((WorkerColor)blockType++);
+            _blocks.Add(block);
+            OnBlockGenerate.Invoke(block);
+            return block;
+        }
+
+        public void RemoveBlock(GeneratedBlock block)
+        {
+            _blocks.Remove(block);
+            OnBlockDestroy.Invoke(block);
         }
 
         private void Start()
         {
-            _ = GenerateBlocks();
+            GenerateBlocks(5);
+            GameManager.Instance.GamePause.AddListener((paused) => isPaused = paused);
+        }
+
+        public bool HasBlock()
+        {
+            return _blocks.Count > 0;
         }
 
         public GeneratedBlock GetCurrentSelectedBlock()
         {
-            return _blocks[SelectedBlock];
+            return SelectedBlock;
         }
     }
 }

@@ -12,12 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 042231bc0b152cd4aaa838988da5a8d7, type: 3}
   m_Name: DefaultPalette
   m_EditorClassIdentifier: 
-  colors:
+  displayColors:
   - {r: 0.5, g: 0.5, b: 0.5, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 1, b: 0, a: 1}
   - {r: 0, g: 0, b: 1, a: 1}
   - {r: 1, g: 0, b: 1, a: 1}
+  internalColors:
+  - {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.5, g: 1, b: 0, a: 1}
+  - {r: 0, g: 1, b: 1, a: 1}
+  - {r: 0.5, g: 0, b: 1, a: 1}
   paletteTexture: {fileID: 2800000, guid: e747ee97b5cfb154d9463a2c575b9aab, type: 3}
   shapeSprites: []
   blockShapeSprites:
