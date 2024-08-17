@@ -1832,6 +1832,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7292355237773076002, guid: 0a1d6d72aa93e9642978ea2d5130ba3f, type: 3}
+      propertyPath: colorIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7292355237773076002, guid: 0a1d6d72aa93e9642978ea2d5130ba3f, type: 3}
       propertyPath: colors.Array.data[3].b
       value: 0.8333335
       objectReference: {fileID: 0}
@@ -2082,6 +2086,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   breakForce: 100
+  Queue: {fileID: 2057310655}
 --- !u!114 &2057310654
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -36,7 +36,12 @@ namespace Build_System
 
         private void Start()
         {
-            GenerateBlocks();
+            _ = GenerateBlocks();
+        }
+
+        public GeneratedBlock GetCurrentSelectedBlock()
+        {
+            return _blocks[SelectedBlock];
         }
     }
 }

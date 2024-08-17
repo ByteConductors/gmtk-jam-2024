@@ -39,7 +39,8 @@ namespace UI.BuildingUI
 
         private void Update()
         {
-            blockIcon.transform.localPosition = Vector3.Lerp(blockIcon.transform.localPosition, targetPosition, Time.deltaTime * 5);
+            blockIcon.transform.localPosition = 
+                Vector3.Lerp(blockIcon.transform.localPosition, targetPosition, Time.deltaTime * 5);
         }
     }
 }

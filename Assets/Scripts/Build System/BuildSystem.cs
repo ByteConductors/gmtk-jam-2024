@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Build_System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -11,6 +12,7 @@ public class BuildSystem : MonoBehaviour
     [FormerlySerializedAs("cube")] public GameObject cubePrefab;
     public LayerMask sideLayerMask;
     public float breakForce;
+    public BlockQueue Queue;
 
     private Vector3 point = Vector3.zero;
     
@@ -29,12 +31,16 @@ public class BuildSystem : MonoBehaviour
                 Vector3 direction = new Vector3(Mathf.Round(hitData.normal.x), Mathf.Round(hitData.normal.y),
                     Mathf.Round(hitData.normal.z));
                 var cube = hitData.transform.GetComponent<BuildingCube>();
-                if (cube.placeable(direction))
+                var selectedQueueBlock = Queue.GetCurrentSelectedBlock();
+                if (cube.placeable(direction,selectedQueueBlock.Shape))
                 {
+                    
                     var newCube = Instantiate(cubePrefab, Tower.Instance.transform).GetComponent<BuildingCube>();
                     newCube.OnGridLocation = BuildingCube.CalculateLocation(cube.OnGridLocation, direction);
                     newCube.transform.position = hitData.transform.position + hitData.normal;
                     newCube.transform.rotation = hitData.transform.rotation;
+                    newCube.SetColor(selectedQueueBlock.WorkerColor);
+                    Queue.RerollSlot(Queue.SelectedBlock);
 
                     if (!Tower.Instance.IsSupported(newCube.OnGridLocation, out var unsupportedBlocks))
                     {

@@ -1,47 +1,68 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using Workers;
 using Random = UnityEngine.Random;
 
-public class BuildingCube : MonoBehaviour
+namespace Build_System
 {
-    public Color[] colors;
-    public Side[] sideObjects;
-    
-    
-    private Color _color;
-    private Vector3Int _onGridLocation;
-    public Vector3Int OnGridLocation
+    public class BuildingCube : MonoBehaviour
     {
-        get => _onGridLocation; 
-        set
+        [SerializeField] public Color[] colors;
+        [SerializeField] public Side[] sideObjects;
+        [SerializeField] private int colorIndex = -1;
+    
+    
+        private Color _color;
+        private Vector3Int _onGridLocation;
+        public Vector3Int OnGridLocation
         {
-            _onGridLocation = value;
-            Tower.Instance.PlaceBlocks(value, this);
+            get => _onGridLocation; 
+            set
+            {
+                _onGridLocation = value;
+                Tower.Instance.PlaceBlocks(value, this);
+            }
         }
-    }
 
-    public Rigidbody rb;
+        public Rigidbody rb;
 
-    void Awake()
-    {
-        rb = GetComponent<Rigidbody>();
-        var index = Random.Range(0, colors.Length);
-        GetComponent<MeshRenderer>().material.color = colors[index];
-        _color = colors[index];
-    }
+        void Awake()
+        {
+            rb = GetComponent<Rigidbody>();
+            sideObjects = GetComponentsInChildren<Side>();
+            if (colorIndex >= 0) SetColor((WorkerColor)colorIndex);
+        }
 
-    public bool placeable(Vector3 normal)
-    {
-        Vector3Int newPosition = CalculateLocation(OnGridLocation, normal);
-        return Tower.Instance.IsLocationFree(newPosition);
-    }
+        public void SetColor(WorkerColor color)
+        {
+            var index = (int)color;
+            GetComponent<MeshRenderer>().material.color = colors[index];
+            _color = colors[index];
+        }
+
+        public bool placeable(Vector3 normal, BuildShape shape)
+        {
+            Vector3Int direction = new Vector3Int(Mathf.RoundToInt(normal.x), Mathf.RoundToInt(normal.y),
+                Mathf.RoundToInt(normal.z));
+            if (GetSideInDirection(direction).shape != shape) return false;
+        
+            Vector3Int newPosition = CalculateLocation(OnGridLocation, normal);
+            return Tower.Instance.IsLocationFree(newPosition);
+        }
+
+        public Side GetSideInDirection(Vector3Int direction)
+        {
+            foreach (var side in sideObjects)
+            {
+                if (side.direction == direction) return side;
+            }
+
+            return null;
+        }
     
-    public static Vector3Int CalculateLocation(Vector3Int location, Vector3 direction)
-    {
-        return location + new Vector3Int(Mathf.RoundToInt(direction.x), Mathf.RoundToInt(direction.y),
-            Mathf.RoundToInt(direction.z));
+        public static Vector3Int CalculateLocation(Vector3Int location, Vector3 direction)
+        {
+            return location + new Vector3Int(Mathf.RoundToInt(direction.x), Mathf.RoundToInt(direction.y),
+                Mathf.RoundToInt(direction.z));
+        }
     }
 }
