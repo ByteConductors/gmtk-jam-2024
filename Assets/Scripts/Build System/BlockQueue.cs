@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using UnityEngine.Events;
 using Workers;
@@ -33,6 +34,9 @@ namespace Build_System
         
         [SerializeField] private float nextBlockDelay = 5;
         private float nextBlockTime = 0;
+        
+        private Boolean isPaused = false;
+        
         public float minSpaceRequestDelayInSeconds = 0.1f;
         public float maxSpaceRequestDelayInSeconds = 3;
         public float streatchFunction = 40;
@@ -45,7 +49,7 @@ namespace Build_System
 
         private void FixedUpdate()
         {
-            if (Time.time >= nextBlockTime)
+            if (Time.time >= nextBlockTime && !isPaused)
             {
                 nextBlockTime = Mathf.Exp(-(iteration/streatchFunction))*maxSpaceRequestDelayInSeconds + minSpaceRequestDelayInSeconds + Time.time;;
                 GenerateBlock();
@@ -71,6 +75,7 @@ namespace Build_System
         private void Start()
         {
             GenerateBlocks(5);
+            GameManager.Instance.GamePause.AddListener((paused) => isPaused = paused);
         }
 
         public bool HasBlock()
