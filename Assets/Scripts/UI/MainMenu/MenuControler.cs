@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace UI.MainMenu
@@ -15,7 +16,8 @@ namespace UI.MainMenu
 
         public void PlayButton()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+            if(PlayerPrefs.GetInt("HAS_PLAYED_BEFORE") == 1) UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+            else UnityEngine.SceneManagement.SceneManager.LoadScene("Tutorial");
         }
 
         public void OptionsButton()
