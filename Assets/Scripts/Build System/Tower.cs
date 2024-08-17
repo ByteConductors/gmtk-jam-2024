@@ -38,6 +38,11 @@ public class Tower : MonoBehaviour
     public bool IsSupported(Vector3Int location, out List<Vector3Int> list)
     {
         list = new List<Vector3Int>();
+        if (Mathf.Abs(location.x) >= 4 || Mathf.Abs(location.z) >= 4)
+        {
+            list.Add(location);
+            return false;
+        }
         if (location.y == 0) return true;
         return _isSupported(location, 0, list);
     }
