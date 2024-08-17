@@ -41,11 +41,13 @@ namespace UI.ingame
         {
             Debug.Log("Game Over - from WorkerQueue");
             WorkerManager.Instance.onNewWorkerSpaceRequested.RemoveListener(NewDudeInLine);
+            WorkerManager.Instance.onNewWorkerSpaceRequested.RemoveListener(_ => DeleteDudeInLine());
         }
         
         void Start()
         {
             WorkerManager.Instance.onNewWorkerSpaceRequested.AddListener(NewDudeInLine);
+            WorkerManager.Instance.onWorkerQueueRelieved.AddListener(_ => DeleteDudeInLine());
             GameManager.Instance.GameOver.AddListener(OnGameOver);
         }
     }
