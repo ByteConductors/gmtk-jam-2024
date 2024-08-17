@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using Build_System;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -13,6 +15,9 @@ public class BuildSystem : MonoBehaviour
 
     private Vector3 point = Vector3.zero;
     
+    public delegate void BlockFall();
+    public static event BlockFall BlockFalling;
+    public float despawnDelay = 1.5f;
     // Update is called once per frame
     void Update()
     {
@@ -50,6 +55,13 @@ public class BuildSystem : MonoBehaviour
                         {
                             Debug.Log(position.ToString());
                             Tower.Instance.components[position].rb.isKinematic = false;
+                            if (BlockFalling != null)
+                            {
+                                BlockFalling();
+                            }
+
+                            StartCoroutine(DeleteObjekt(Tower.Instance.components[position].gameObject));
+
                         }
                     }
                     else
@@ -66,5 +78,12 @@ public class BuildSystem : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(point,0.1f);
+    }
+    
+    IEnumerator DeleteObjekt(GameObject gameObject)
+    {
+        yield return new WaitForSeconds(despawnDelay);
+        Destroy(gameObject);
+        
     }
 }

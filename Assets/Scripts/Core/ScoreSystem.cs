@@ -5,10 +5,11 @@ using Core;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Workers;
 
 public class ScroeSystem : MonoBehaviour
 {
-    public int menschScore = 10;
+    public int workerScore = 10;
     public int blockFallScore = -20;
     public int startScore = 10;
     public GameObject highScore;
@@ -23,6 +24,7 @@ public class ScroeSystem : MonoBehaviour
     private void Start()
     {
         BuildSystem.BlockFalling += this.BlockFallingScore;
+        WorkerManager.Instance.onWorkerQueueRelieved.AddListener(_ => UpdateScore(workerScore));
         _highScoreTextMeshPro = highScore.GetComponent<TextMeshProUGUI>();
         _scoreTextMeshPro = score.GetComponent<TextMeshProUGUI>();
         UpdateScore(startScore);

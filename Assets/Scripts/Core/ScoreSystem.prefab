@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6430574328080287456}
-  - component: {fileID: 6491230241732034482}
+  - component: {fileID: 6232016332916357065}
   m_Layer: 0
   m_Name: ScoreSystem
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6491230241732034482
+--- !u!114 &6232016332916357065
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,10 +41,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1644472967952942159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2345cec0fffa94489862d0cf461ceb2, type: 3}
+  m_Script: {fileID: 11500000, guid: cf4e6cf133a19b74cb9534bbc3e963cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menschScore: 10
+  workerScore: 10
   blockFallScore: -20
   startScore: 10
   highScore: {fileID: 0}
