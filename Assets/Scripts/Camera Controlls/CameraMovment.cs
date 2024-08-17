@@ -18,7 +18,9 @@ public class CameraMovment : MonoBehaviour
     {
         if (Input.GetButton("Fire1"))
         {
-            transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y-Input.GetAxis("Mouse Y")*movementSpeed*Time.deltaTime, 0, 1000), transform.position.z);
+            transform.position = new Vector3(
+                transform.position.x, Mathf.Clamp(transform.position.y-Input.GetAxis("Mouse Y")*movementSpeed*Time.deltaTime, 0, 1000), 
+                transform.position.z);
         }
         if (Input.GetButton("Fire2"))
         {

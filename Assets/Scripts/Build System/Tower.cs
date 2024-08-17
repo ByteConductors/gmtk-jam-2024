@@ -38,6 +38,7 @@ public class Tower : MonoBehaviour
     public bool IsSupported(Vector3Int location, out List<Vector3Int> list)
     {
         list = new List<Vector3Int>();
+        if (location.y == 0) return true;
         return _isSupported(location, 0, list);
     }
 
