@@ -11,8 +11,11 @@ public class BuildSystem : MonoBehaviour
     [FormerlySerializedAs("cube")] public GameObject cubePrefab;
     public LayerMask sideLayerMask;
     public float breakForce;
+    public delegate void BlockFall();
+    public static event BlockFall BlockFalling;
 
     private Vector3 point = Vector3.zero;
+    public float despawnDelay = 1.5f;
     
     // Update is called once per frame
     void Update()
@@ -42,6 +45,12 @@ public class BuildSystem : MonoBehaviour
                         {
                             Debug.Log(position.ToString());
                             Tower.Instance.components[position].rb.isKinematic = false;
+                            if (BlockFalling != null)
+                            {
+                                BlockFalling();
+                            }
+
+                            StartCoroutine(DeleteObjekt(Tower.Instance.components[position].gameObject));
                         }
                     }
                     else
@@ -58,5 +67,12 @@ public class BuildSystem : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(point,0.1f);
+    }
+
+    IEnumerator DeleteObjekt(GameObject gameObject)
+    {
+        yield return new WaitForSeconds(despawnDelay);
+        Destroy(gameObject);
+        
     }
 }
