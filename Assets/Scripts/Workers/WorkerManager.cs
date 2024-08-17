@@ -38,14 +38,6 @@ namespace Workers
             DoTimerCheck();
         }
 
-        private void OnGUI()
-        {
-            var builder = new StringBuilder();
-            foreach (var color in _colorsQueue.ToArray()) builder.Append(color.HumanName() + ",");
-
-            GUI.TextArea(new Rect(0, 0, 800, 300), builder.ToString());
-        }
-
         private void DoTimerCheck()
         {
             if (_nextSpaceRequestTime >= Time.time) return;

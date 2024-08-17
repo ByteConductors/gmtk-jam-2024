@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class CameraTargetMovement : MonoBehaviour
 {
     
-    public float speed = 10f;
+    public float moveSpeed = 10f;
+    public float rotateSpeed = 30f;
     private Vector3 motion;
     private Vector3 rotation;
     private Rigidbody rb;
@@ -17,14 +19,21 @@ public class CameraTargetMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetButton("Fire1"))
         {
-            motion = new Vector3(0, Input.GetAxis("Mouse Y"), 0);
+            motion = new Vector3(0, -Input.GetAxis("Mouse Y"), 0);
+            if (!(transform.position.y < 0.1f && motion.y < 0))
+                rb.velocity = motion * moveSpeed;
+        }
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, 0, 1000),
+            transform.position.z);
+        
+        if (Input.GetButton("Fire2"))
+        {
             rotation = new Vector3(0, Input.GetAxis("Mouse X"), 0);
-            rb.velocity = motion * speed;
-            transform.Rotate(rotation * speed/6);
+            transform.Rotate(rotation * rotateSpeed/6);
         }
         
     }
