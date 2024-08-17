@@ -3,6 +3,7 @@ using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Events;
 using Workers;
+using Object = UnityEngine.Object;
 
 namespace Core
 {
@@ -13,6 +14,7 @@ namespace Core
         
         public readonly UnityEvent GameOver = new ();
         public readonly UnityEvent GameBegin = new ();
+        public readonly UnityEvent<Boolean> GamePause = new ();
 
         [SerializeField] private int maxQueueLength;
 
@@ -42,6 +44,14 @@ namespace Core
         public void TriggerGameOver()
         {
             GameOver.Invoke();
+        }
+
+        private bool _isPaused = false;
+        public void TriggerPause()
+        {
+            Debug.Log("Pause initiated");
+            _isPaused = !_isPaused;
+            GamePause.Invoke(_isPaused);
         }
     }
 }
