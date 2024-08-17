@@ -1,35 +1,38 @@
 using UnityEngine;
 
-public class MenuControler : MonoBehaviour
+namespace UI.MainMenu
 {
-    public GameObject MainMenu;
-    public GameObject OptionsMenu;
-
-    // Start is called before the first frame update
-    void Start()
+    public class MenuControler : MonoBehaviour
     {
-        MainMenuButton();
-    }
+        public GameObject MainMenu;
+        public GameObject OptionsMenu;
 
-    public void PlayButton()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("CameraExample");
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
+            MainMenuButton();
+        }
 
-    public void OptionsButton()
-    {
-        MainMenu.SetActive(false);
-        OptionsMenu.SetActive(true);
-    }
+        public void PlayButton()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("CameraExample");
+        }
 
-    public void MainMenuButton()
-    {
-        MainMenu.SetActive(true);
-        OptionsMenu.SetActive(false);
-    }
+        public void OptionsButton()
+        {
+            MainMenu.SetActive(false);
+            OptionsMenu.SetActive(true);
+        }
 
-    public void QuitButton()
-    {
-        Application.Quit();
+        public void MainMenuButton()
+        {
+            MainMenu.SetActive(true);
+            OptionsMenu.SetActive(false);
+        }
+
+        public void QuitButton()
+        {
+            Application.Quit();
+        }
     }
 }

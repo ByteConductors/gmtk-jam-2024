@@ -41,6 +41,7 @@ public class BuildSystem : MonoBehaviour
                     newCube.transform.rotation = hitData.transform.rotation;
                     newCube.SetColor(selectedQueueBlock.WorkerColor);
                     Queue.RerollSlot(Queue.SelectedBlock);
+                    newCube.GetComponent<AudioSource>().Play();
 
                     if (!Tower.Instance.IsSupported(newCube.OnGridLocation, out var unsupportedBlocks))
                     {

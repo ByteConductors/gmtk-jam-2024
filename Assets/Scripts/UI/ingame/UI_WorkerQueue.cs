@@ -1,45 +1,52 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
 using Color_Palettes;
+using Core;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.Serialization;
 using Workers;
 
-public class UI_WorkerQueue : MonoBehaviour
+namespace UI.ingame
 {
-    
-    public GameObject worker_prefab;
-    [SerializeField] private ColorPalette _palette;
-    private Queue<GameObject> workers = new Queue<GameObject>();
-    private GameObject newWorker;
-    
-    void newDudeInLine(WorkerColor workerColor)
+    public class UI_WorkerQueue : MonoBehaviour
     {
-        Color color = _palette.colors[(int)workerColor + 1];
-        newWorker = Instantiate(worker_prefab, transform);
-        newWorker.transform.position = new Vector3(20, 20 + (workers.Count * 20), 0);
-        newWorker.GetComponent<UI_QueueIcon>().setIconColor(color);
-        newWorker.transform.SetSiblingIndex(workers.Count);
-        workers.Enqueue(newWorker);
-    }
-
-    void deleteDudeInLine()
-    {
-        Debug.Log("Worker killed, remaining: " + workers.Count);
-        GameObject pleasedWorker = workers.Dequeue();
-        Destroy(pleasedWorker);
-        foreach (var dude in workers)
+    
+        public GameObject workerPrefab;
+        [SerializeField] private ColorPalette palette;
+        private Queue<GameObject> _workers = new Queue<GameObject>();
+        private GameObject _newWorker;
+        [SerializeField] private float workerDistance = 20f;
+    
+        void NewDudeInLine(WorkerColor workerColor)
         {
-            dude.transform.position -= new Vector3(0, 20, 0);
+            Color color = palette.colors[(int)workerColor + 1];
+            _newWorker = Instantiate(workerPrefab, transform);
+            _newWorker.transform.position = new Vector3(20, 20 + (_workers.Count * workerDistance), 0);
+            _newWorker.GetComponent<UIQueueIcon>().SetIconColor(color);
+            _newWorker.transform.SetSiblingIndex(_workers.Count);
+            _workers.Enqueue(_newWorker);
+        }
+
+        void DeleteDudeInLine()
+        {  
+            GameObject pleasedWorker = _workers.Dequeue();
+            Destroy(pleasedWorker);
+            foreach (var dude in _workers)
+            {
+                dude.transform.position -= new Vector3(0, workerDistance, 0);
+            }
+        
+        }
+
+        void OnGameOver()
+        {
+            Debug.Log("Game Over - from WorkerQueue");
+            WorkerManager.Instance.onNewWorkerSpaceRequested.RemoveListener(NewDudeInLine);
         }
         
-    }
-
-    void Start()
-    {
-        WorkerManager.Instance.onNewWorkerSpaceRequested.AddListener(newDudeInLine);
+        void Start()
+        {
+            WorkerManager.Instance.onNewWorkerSpaceRequested.AddListener(NewDudeInLine);
+            GameManager.Instance.GameOver.AddListener(OnGameOver);
+        }
     }
 }
