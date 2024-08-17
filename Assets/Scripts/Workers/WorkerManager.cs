@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Text;
+using Core;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,6 +33,12 @@ namespace Workers
         private void Awake()
         {
             DoSingletonCheck();
+            _nextSpaceRequestTime = Time.time;
+        }
+
+        private void Start()
+        {
+            GameManager.Instance.GameOver.AddListener(GameOver);
         }
 
         private void FixedUpdate()
@@ -39,10 +46,15 @@ namespace Workers
             DoTimerCheck();
         }
 
+        private void GameOver()
+        {
+            _colorsQueue.Clear();
+        }
+
         private void DoTimerCheck()
         {
             if (_nextSpaceRequestTime >= Time.time) return;
-            _nextSpaceRequestTime += spaceRequestDelayInSeconds;
+            _nextSpaceRequestTime = spaceRequestDelayInSeconds + Time.time;
             SendNewSpaceRequest();
         }
 

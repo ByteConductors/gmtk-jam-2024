@@ -4,11 +4,11 @@ namespace UI.MainMenu
 {
     public class MenuControler : MonoBehaviour
     {
-        public GameObject MainMenu;
-        public GameObject OptionsMenu;
+        public GameObject mainMenu;
+        public GameObject optionsMenu;
 
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             MainMenuButton();
         }
@@ -20,14 +20,14 @@ namespace UI.MainMenu
 
         public void OptionsButton()
         {
-            MainMenu.SetActive(false);
-            OptionsMenu.SetActive(true);
+            mainMenu.SetActive(false);
+            optionsMenu.SetActive(true);
         }
 
         public void MainMenuButton()
         {
-            MainMenu.SetActive(true);
-            OptionsMenu.SetActive(false);
+            mainMenu.SetActive(true);
+            optionsMenu.SetActive(false);
         }
 
         public void QuitButton()
