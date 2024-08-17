@@ -5,7 +5,7 @@ namespace Color_Palettes
     [CreateAssetMenu(fileName = "Color Palette")]
     public class ColorPalette : ScriptableObject
     {
-        public Color[] colors = new []
+        public Color[] colors = 
         {
             Color.gray,
             Color.red,
@@ -15,6 +15,9 @@ namespace Color_Palettes
         };
 
         public Texture paletteTexture;
+
+        public Sprite[] shapeSprites;
+        public Sprite[] blockShapeSprites;
     }
 }
 
