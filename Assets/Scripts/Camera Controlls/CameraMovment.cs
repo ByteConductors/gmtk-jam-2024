@@ -28,7 +28,7 @@ public class CameraMovment : MonoBehaviour
         
         
         currentDistance += Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-        Mathf.Clamp(currentDistance, 0, maxDistance);
+        currentDistance = Mathf.Clamp(currentDistance, maxDistance,-2);
         cameras.transform.localPosition = Vector3.Lerp(cameras.transform.localPosition, new Vector3(0, 5, currentDistance), Time.deltaTime*3);
     }
 }
