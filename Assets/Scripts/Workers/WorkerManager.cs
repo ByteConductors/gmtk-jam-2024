@@ -10,6 +10,7 @@ namespace Workers
     public class WorkerManager : MonoBehaviour
     {
         public UnityEvent<WorkerColor> onNewWorkerSpaceRequested = new();
+        public UnityEvent<WorkerColor> onWorkerQueueRelieved = new();
         public float spaceRequestDelayInSeconds = 5;
 
         private readonly Queue<WorkerColor> _colorsQueue = new();
@@ -60,7 +61,7 @@ namespace Workers
                 if (!_colorsQueue.TryPeek(out var color) || _freeSpaceTable[color] <= 0) return;
 
                 _freeSpaceTable[color]--;
-                _colorsQueue.Dequeue();
+                onWorkerQueueRelieved.Invoke(_colorsQueue.Dequeue());
             }
         }
 
@@ -79,6 +80,7 @@ namespace Workers
         public void AddColorSpace(WorkerColor color)
         {
             _freeSpaceTable[color]++;
+            RelieveQueue();
         }
     }
 }
