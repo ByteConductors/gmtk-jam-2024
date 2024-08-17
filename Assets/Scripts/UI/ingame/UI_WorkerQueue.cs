@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Color_Palettes;
 using Core;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Workers;
 
 namespace UI.ingame
@@ -34,7 +33,6 @@ namespace UI.ingame
             {
                 dude.transform.position -= new Vector3(0, workerDistance, 0);
             }
-        
         }
 
         void OnGameOver()

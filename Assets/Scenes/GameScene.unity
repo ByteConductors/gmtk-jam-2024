@@ -156,6 +156,10 @@ MonoBehaviour:
   OnBlockGenerate:
     m_PersistentCalls:
       m_Calls: []
+  OnBlockDestroy:
+    m_PersistentCalls:
+      m_Calls: []
+  nextBlockDelay: 5
 --- !u!114 &100854067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1416,6 +1420,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5518298135455790630, guid: 8137533b19ba8954eaf37cf8c537c835, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6867529143437432261, guid: 8137533b19ba8954eaf37cf8c537c835, type: 3}
       propertyPath: rotationSpeed
       value: 60
@@ -1424,6 +1432,10 @@ PrefabInstance:
       propertyPath: queue
       value: 
       objectReference: {fileID: 100854066}
+    - target: {fileID: 8902110038867083256, guid: 8137533b19ba8954eaf37cf8c537c835, type: 3}
+      propertyPath: icons.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
