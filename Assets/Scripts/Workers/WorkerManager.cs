@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Core;
@@ -29,7 +30,9 @@ namespace Workers
 
         public static WorkerManager Instance => _instance;
         private static WorkerManager _instance;
-
+        
+        private Boolean isPaused = false;
+    
         private void Awake()
         {
             DoSingletonCheck();
@@ -39,6 +42,7 @@ namespace Workers
         private void Start()
         {
             GameManager.Instance.GameOver.AddListener(GameOver);
+            GameManager.Instance.GamePause.AddListener((paused) => isPaused = paused);
         }
 
         private void FixedUpdate()
@@ -55,7 +59,7 @@ namespace Workers
         {
             if (_nextSpaceRequestTime >= Time.time) return;
             _nextSpaceRequestTime = spaceRequestDelayInSeconds + Time.time;
-            SendNewSpaceRequest();
+            if (!isPaused) SendNewSpaceRequest();
         }
 
         private void SendNewSpaceRequest()
