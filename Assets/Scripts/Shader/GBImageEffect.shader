@@ -47,42 +47,71 @@ Shader "Effects/ReGBCamera/PaletteShader"
 
                 //Split colors into bands
                 //get Luminosity
-                float maximum = max(col.r,max(col.g,col.b));
-                float minumum = min(col.r,min(col.g,col.b));
-                float lum = (maximum + minumum) / 2;
-
-                float hue = 0;
-
-                if(maximum == col.r) {
-                    hue = 0+(col.g-col.b)/lum;
-                } else if(maximum == col.g) {
-                    hue = 2+(col.b-col.r)/lum;
-                } else if(maximum == col.b) {
-                    hue = 4+(col.r-col.g)/lum;
-                }
+                float a = max(col.r,max(col.g,col.b));
+                float b = min(col.r,min(col.g,col.b));
+                float L = 0.5f*(a + b);
+                float c = a-b;
+                float s = 0;
+                float r = 0;
+                float g= 0;
+                float b2 = 0;
+                float h= 0;
                 
-                hue = frac(hue / 6);
 
-                float saturation = lum / maximum;
-                float value = maximum;
+                if(c==0)
+                {
+                    s = 0;
+                } else if (L<0.5f)
+                {
+                    s=c/(a+b);
+                }
+                else
+                {
+                    s=c/(2-a-b);
+                }
+
+                r=(a-col.r)/c;
+                g=(a-col.g)/c;
+                b2=(a-col.b)/c;
+                if(col.r==a)
+                {
+                    h = b2-g;
+                }
+                else if (col.g == a)
+                {
+                    h=2+r-b2;
+                }
+                else
+                {
+                    h=4+g-r;
+                }
+
+                h=60*h;
+                if(h<0)
+                {
+                    h=h+360;
+                }
+
+                h = h *(1/ 360.0);
+                
                 float2 paletteUV;
                 
-                if (saturation > .8f)
-                    paletteUV = float2(value,0.1f);
+                if (s < .2f)
+                    paletteUV = float2(L,0.1f);
 
-                else if (hue <= 0.25f)
-                    paletteUV = float2(value,0.3f);
+                else if (h <= 0.125f || h > 0.875f)
+                    paletteUV = float2(L,0.3f);
 
-                else if (hue > 0.25f && hue <= 0.45f)
-                    paletteUV = float2(value,0.5f);
+                else if (h > 0.125f && h <= 0.375f)
+                    paletteUV = float2(L,0.5f);
 
-                else if (hue > 0.45f && hue <= 0.68f)
-                    paletteUV = float2(value,0.7f);
+                else if (h > 0.375f && h <= 0.625f)
+                    paletteUV = float2(L,0.7f);
 
-                else if (hue > 0.68f)
-                    paletteUV = float2(value,0.9f);
+                else if (h > 0.625f && h <=0.875f)
+                    paletteUV = float2(L,0.9f);
 
-                else paletteUV = float2(value,0.25f);
+                else paletteUV = float2(L,0.25f);
                 
                 col = tex2D(_PaletteTex, paletteUV);
                 return col;
