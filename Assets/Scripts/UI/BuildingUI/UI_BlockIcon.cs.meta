@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/UI/BuildingUI/UI_BlockIcon.cs.meta
+guid: c9d5cee778d8f3f4c87432fa123e0ece
+========
+guid: 51ec984e96b3b374984eb6ce9bf174a8
+>>>>>>>> develop:Assets/Scripts/SoundManager/AudioManager.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 042231bc0b152cd4aaa838988da5a8d7, type: 3}
+  m_Name: DefaultPalette
+  m_EditorClassIdentifier: 
+  colors:
+  - {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0, g: 1, b: 0, a: 1}
+  - {r: 0, g: 0, b: 1, a: 1}
+  - {r: 1, g: 0, b: 1, a: 1}
+  paletteTexture: {fileID: 2800000, guid: e747ee97b5cfb154d9463a2c575b9aab, type: 3}
+  shapeSprites: []
+  blockShapeSprites:
+  - {fileID: 21300000, guid: 0cde3e8999cfddc40925c3575d093823, type: 3}
+  - {fileID: 21300000, guid: 4e6fa0f28abcb3f4d8c964248c75acc9, type: 3}
+  - {fileID: 21300000, guid: 3b6510f7c6f5154448f9f692bea0c86f, type: 3}
+  - {fileID: 21300000, guid: 39249934c0693964d989bbd5b451727e, type: 3}
