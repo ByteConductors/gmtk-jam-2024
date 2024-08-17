@@ -36,7 +36,7 @@ namespace Build_System
         public float minSpaceRequestDelayInSeconds = 0.1f;
         public float maxSpaceRequestDelayInSeconds = 3;
         public float streatchFunction = 40;
-        private long iteration = 0.4f;
+        private long iteration = 1;
 
         public void GenerateBlocks(int count)
         {
