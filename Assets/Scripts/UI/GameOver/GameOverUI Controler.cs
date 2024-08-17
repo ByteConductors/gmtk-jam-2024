@@ -8,7 +8,7 @@ namespace UI.GameOver
 
         public void PlayButton()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("CameraExample");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
         }
 
         public void MainMenuButton()

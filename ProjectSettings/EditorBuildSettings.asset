@@ -8,10 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 31e9f19996e847443b9bf3434460293a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CameraExample.unity
     guid: a6a2b873512b9c0419f7641e1888da57
   - enabled: 1
     path: Assets/Scenes/GameOverOverlay.unity
     guid: a9afc0bb854b8fe489e3d8f6d236f228
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: bb25ec00f6074574788206a11577d611
   m_configObjects: {}

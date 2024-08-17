@@ -15,7 +15,7 @@ namespace UI.MainMenu
 
         public void PlayButton()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("CameraExample");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
         }
 
         public void OptionsButton()
