@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Build_System;
 using Color_Palettes;
 using UnityEngine;
@@ -10,8 +11,9 @@ namespace UI.BuildingUI
     {
         private static UI_BlockSelector _instance;
         public static UI_BlockSelector Instance => _instance;
+        public GameObject blockSelector;
         
-        [SerializeField] public UI_BlockIcon[] icons = new UI_BlockIcon[5];
+        [SerializeField] public List<UI_BlockIcon> icons = new();
         [SerializeField] public ColorPalette colorPalette;
         [SerializeField] public Sprite[] shapeSprites;
 
@@ -20,19 +22,28 @@ namespace UI.BuildingUI
         private void Awake()
         {
             _instance = this;
-            for(var i = 0; i < icons.Length; i++)
+            queue.OnBlockGenerate.AddListener(b =>
             {
-                var i1 = i;
-                icons[i1].Id = i1;
-                icons[i1].OnClick.AddListener(() =>
+                var icon = Instantiate(blockSelector, transform).GetComponent<UI_BlockIcon>();
+                icon.SetBlock(b);
+                icon.OnClick.AddListener(() => queue.SelectedBlock = b);
+                icon.OnClick.AddListener(() =>
                 {
-                    foreach (var listIcon in icons) listIcon.SetSelected(false);
-                    icons[i1].SetSelected(true);
-                    queue.SelectedBlock = i1;
+                    for (int i = 0; i < icons.Count; i++)
+                    {
+                        icons[i].SetSelected(false);
+                    }
+
+                    icon.SetSelected(true);
                 });
-            }
+                icons.Add(icon);
+            });
             
-            queue.OnBlockGenerate.AddListener((i,b) => icons[i].SetIcon(b));
+            queue.OnBlockDestroy.AddListener(b =>
+            {
+                Destroy(icons.Find(i => i.Block == b).gameObject);
+                
+            });
         }
     }
 }

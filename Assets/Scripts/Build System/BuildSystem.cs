@@ -45,9 +45,8 @@ public class BuildSystem : MonoBehaviour
                     
                     WorkerManager.Instance.AddColorSpace(selectedQueueBlock.WorkerColor);
                     
-                    Queue.RerollSlot(Queue.SelectedBlock);
+                    Queue.RemoveBlock(Queue.SelectedBlock);
                     newCube.GetComponent<AudioSource>().Play();
-                    
 
                     if (!Tower.Instance.IsSupported(newCube.OnGridLocation, out var unsupportedBlocks))
                     {
