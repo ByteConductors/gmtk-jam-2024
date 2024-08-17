@@ -53,6 +53,7 @@ public class BuildSystem : MonoBehaviour
                     {
                         foreach (var position in unsupportedBlocks)
                         {
+                            var _cube = Tower.Instance.components[position];
                             Debug.Log(position.ToString());
                             Tower.Instance.components[position].rb.isKinematic = false;
                             Tower.Instance.components.Remove(position);
@@ -61,7 +62,7 @@ public class BuildSystem : MonoBehaviour
                                 BlockFalling();
                             }
 
-                            StartCoroutine(DeleteObjekt(Tower.Instance.components[position].gameObject));
+                            StartCoroutine(DeleteObjekt(_cube.gameObject));
 
                         }
                     }
