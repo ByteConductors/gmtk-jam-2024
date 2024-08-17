@@ -36,6 +36,11 @@ namespace Build_System
         private float nextBlockTime = 0;
         
         private Boolean isPaused = false;
+        
+        public float minSpaceRequestDelayInSeconds = 0.1f;
+        public float maxSpaceRequestDelayInSeconds = 3;
+        public float streatchFunction = 40;
+        private long iteration = 1;
 
         public void GenerateBlocks(int count)
         {
@@ -46,7 +51,7 @@ namespace Build_System
         {
             if (Time.time >= nextBlockTime && !isPaused)
             {
-                nextBlockTime = Time.time + nextBlockDelay;
+                nextBlockTime = Mathf.Exp(-(iteration/streatchFunction))*maxSpaceRequestDelayInSeconds + minSpaceRequestDelayInSeconds + Time.time;;
                 GenerateBlock();
             }
         }
