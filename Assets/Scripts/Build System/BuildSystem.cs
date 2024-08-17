@@ -63,7 +63,6 @@ public class BuildSystem : MonoBehaviour
                             }
 
                             StartCoroutine(DeleteObjekt(_cube.gameObject));
-
                         }
                     }
                     else
