@@ -17,7 +17,7 @@ namespace UI.ingame
     
         void NewDudeInLine(WorkerColor workerColor)
         {
-            Color color = palette.colors[(int)workerColor + 1];
+            Color color = palette.displayColors[(int)workerColor + 1];
             _newWorker = Instantiate(workerPrefab, transform);
             _newWorker.transform.position = new Vector3(20, 20 + (_workers.Count * workerDistance), 0);
             _newWorker.GetComponent<UIQueueIcon>().SetIconColor(color);

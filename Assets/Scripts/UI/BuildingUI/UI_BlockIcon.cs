@@ -26,7 +26,7 @@ namespace UI.BuildingUI
 
         public void SetBlock(BlockQueue.GeneratedBlock block)
         {
-            blockIcon.color = UI_BlockSelector.Instance.colorPalette.colors[(int)block.WorkerColor + 1];
+            blockIcon.color = UI_BlockSelector.Instance.colorPalette.displayColors[(int)block.WorkerColor + 1];
             shapeIcon.sprite = UI_BlockSelector.Instance.colorPalette.blockShapeSprites[(int)block.Shape];
             Block = block;
         }

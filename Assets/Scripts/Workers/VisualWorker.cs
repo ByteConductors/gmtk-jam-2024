@@ -25,7 +25,7 @@ public class VisualWorker : MonoBehaviour
     {
         var newWorker = Instantiate(workerPrefab);
         _waitingDic.Add(newWorker);
-        newWorker.GetComponent<MeshRenderer>().material.color = palette.colors[(int)workerColor + 1];
+        newWorker.GetComponent<MeshRenderer>().material.color = palette.internalColors[(int)workerColor + 1];
         newWorker.transform.position = spawnPoint.transform.position;
         StartCoroutine(MoveToSpot(newWorker, spawnPoint.transform.position,
             waitingPositions[_waitingDic.Count - 1].transform.position));
