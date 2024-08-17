@@ -159,7 +159,7 @@ MonoBehaviour:
   OnBlockDestroy:
     m_PersistentCalls:
       m_Calls: []
-  nextBlockDelay: 5
+  nextBlockDelay: 3
 --- !u!114 &100854067
 MonoBehaviour:
   m_ObjectHideFlags: 0
