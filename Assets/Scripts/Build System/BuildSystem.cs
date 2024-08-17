@@ -55,6 +55,7 @@ public class BuildSystem : MonoBehaviour
                         {
                             Debug.Log(position.ToString());
                             Tower.Instance.components[position].rb.isKinematic = false;
+                            Tower.Instance.components.Remove(position);
                             if (BlockFalling != null)
                             {
                                 BlockFalling();
