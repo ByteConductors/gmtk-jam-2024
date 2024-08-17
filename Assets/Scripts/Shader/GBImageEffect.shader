@@ -73,13 +73,13 @@ Shader "Effects/ReGBCamera/PaletteShader"
                 else if (hue <= 0.25f)
                     paletteUV = float2(value,0.3f);
 
-                else if (hue > 0.25f && hue <= 0.5f)
+                else if (hue > 0.25f && hue <= 0.45f)
                     paletteUV = float2(value,0.5f);
 
-                else if (hue > 0.5f && hue <= 0.8f)
+                else if (hue > 0.45f && hue <= 0.68f)
                     paletteUV = float2(value,0.7f);
 
-                else if (hue > 0.8f)
+                else if (hue > 0.68f)
                     paletteUV = float2(value,0.9f);
 
                 else paletteUV = float2(value,0.25f);

@@ -130,7 +130,7 @@ MonoBehaviour:
   - {r: 1, g: 0, b: 0, a: 0}
   - {r: 0, g: 1, b: 0, a: 0}
   - {r: 0, g: 0, b: 1, a: 0}
-  - {r: 1, g: 0, b: 1, a: 0}
+  - {r: 1, g: 0, b: 0.6666665, a: 0}
   sideObjects:
   - {fileID: 4490040480501572836}
   - {fileID: 7098140796819811754}
@@ -138,6 +138,7 @@ MonoBehaviour:
   - {fileID: 3945744888486619101}
   - {fileID: 2702067974838473343}
   - {fileID: 3157423302504378961}
+  colorIndex: -1
   rb: {fileID: 0}
 --- !u!54 &8275249212107770978
 Rigidbody:
