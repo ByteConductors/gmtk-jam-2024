@@ -8,6 +8,9 @@ public class Tower : MonoBehaviour
 {
     private static Tower _instance;
     public static Tower Instance => _instance;
+    
+    [SerializeField] private Texture2D[] shapeTextures;
+    public Texture2D[] ShapeTextures => shapeTextures;
 
     public BuildingCube initialCube;
 

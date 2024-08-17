@@ -1,13 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class BuildingCube : MonoBehaviour
 {
     public Color[] colors;
-
+    public Side[] sideObjects;
+    
+    
     private Color _color;
     private Vector3Int _onGridLocation;
     public Vector3Int OnGridLocation
@@ -40,44 +43,5 @@ public class BuildingCube : MonoBehaviour
     {
         return location + new Vector3Int(Mathf.RoundToInt(direction.x), Mathf.RoundToInt(direction.y),
             Mathf.RoundToInt(direction.z));
-    }
-    
-    private class Side
-    {
-        private Color _color;
-        private GameObject _gameObject;
-        private Vector3 _normal;
-        private bool _blocked;
-
-        public Side(Color color, GameObject gameObject, Vector3 normal)
-        {
-            _color = color;
-            _gameObject = gameObject;
-            _normal = normal;
-        }
-
-        public Color Color
-        {
-            get => _color;
-            set => _color = value;
-        }
-
-        public GameObject GameObject
-        {
-            get => _gameObject;
-            set => _gameObject = value;
-        }
-
-        public Vector3 Normal
-        {
-            get => _normal;
-            set => _normal = value;
-        }
-
-        public bool Blocked
-        {
-            get => _blocked;
-            set => _blocked = value;
-        }
     }
 }

@@ -69,14 +69,19 @@ Shader "Effects/ReGBCamera/PaletteShader"
                 
                 if (saturation > .8f)
                     paletteUV = float2(value,0.1f);
-                else if (hue <= 0.33f)
+
+                else if (hue <= 0.25f)
                     paletteUV = float2(value,0.3f);
-                else if (hue > 0.33f && hue <= 0.6f)
+
+                else if (hue > 0.25f && hue <= 0.5f)
                     paletteUV = float2(value,0.5f);
-                else if (hue > 0.6f && hue <= 0.8f)
+
+                else if (hue > 0.5f && hue <= 0.8f)
                     paletteUV = float2(value,0.7f);
+
                 else if (hue > 0.8f)
                     paletteUV = float2(value,0.9f);
+
                 else paletteUV = float2(value,0.25f);
                 
                 col = tex2D(_PaletteTex, paletteUV);
