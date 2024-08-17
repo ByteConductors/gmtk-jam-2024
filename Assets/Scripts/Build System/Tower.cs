@@ -68,4 +68,30 @@ public class Tower : MonoBehaviour
 
         return false;
     }
+
+    /**
+     * HELLA EXPENSIVE, this needs to be optimized at point
+     */
+    public bool CheckIfConnected(
+        Vector3Int location, 
+        List<Vector3Int> currentList, 
+        List<Vector3Int> knownStable)
+    {
+        if (IsLocationFree(location) || currentList.Contains(location)) return false;
+        if (location == Vector3Int.zero || knownStable.Contains(location)) return true;
+        
+        currentList.Add(location);
+        
+        if (!CheckIfConnected(location + Vector3Int.down, currentList, knownStable) && 
+            !CheckIfConnected(location + Vector3Int.back, currentList, knownStable) &&
+            !CheckIfConnected(location + Vector3Int.forward, currentList, knownStable) &&
+            !CheckIfConnected(location + Vector3Int.left, currentList, knownStable) &&
+            !CheckIfConnected(location + Vector3Int.right, currentList, knownStable)) return false;
+        
+        return true;
+    }
+
+    
+    
+    
 }

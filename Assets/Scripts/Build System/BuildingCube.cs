@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Workers;
 using Random = UnityEngine.Random;
@@ -9,7 +10,8 @@ namespace Build_System
         [SerializeField] public Color[] colors;
         [SerializeField] public Side[] sideObjects;
         [SerializeField] private int colorIndex = -1;
-    
+
+        [SerializeField] public Boolean isInitialBlock = false;
     
         private Color _color;
         private Vector3Int _onGridLocation;

@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Build_System;
 using Core;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Workers;
@@ -54,19 +56,8 @@ public class BuildSystem : MonoBehaviour
 
                     if (!Tower.Instance.IsSupported(newCube.OnGridLocation, out var unsupportedBlocks))
                     {
-                        foreach (var position in unsupportedBlocks)
-                        {
-                            var _cube = Tower.Instance.components[position];
-                            Debug.Log(position.ToString());
-                            Tower.Instance.components[position].rb.isKinematic = false;
-                            Tower.Instance.components.Remove(position);
-                            if (BlockFalling != null)
-                            {
-                                BlockFalling();
-                            }
-
-                            StartCoroutine(DeleteObjekt(_cube.gameObject));
-                        }
+                        HandleUnstable(unsupportedBlocks);
+                        CheckIntegrity();
                     }
                     else
                     {
@@ -79,16 +70,47 @@ public class BuildSystem : MonoBehaviour
         }
     }
 
+    private void CheckIntegrity()
+    {
+        var keys = Tower.Instance.components.Keys.ToList();
+        var stable = new List<Vector3Int>();
+        for (int i = 0; i < keys.Count; i++)
+        {
+            if (!Tower.Instance.components.ContainsKey(keys[i])) continue;
+            var potentiallyUnstableBlocks = new List<Vector3Int>();
+            if (!Tower.Instance.CheckIfConnected(keys[i], potentiallyUnstableBlocks, stable))
+                HandleUnstable(potentiallyUnstableBlocks);
+            else
+                stable.AddRange(potentiallyUnstableBlocks);
+        }
+    }
+
+    private void HandleUnstable(List<Vector3Int> unstableBlocks)
+    {
+        foreach (var position in unstableBlocks)
+        {
+            var _cube = Tower.Instance.components[position];
+            Debug.Log(position.ToString());
+            Tower.Instance.components[position].rb.isKinematic = false;
+            Tower.Instance.components.Remove(position);
+            if (BlockFalling != null)
+            {
+                BlockFalling();
+            }
+
+            StartCoroutine(DeleteObjekt(_cube.gameObject));
+        }
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(point,0.1f);
     }
-    
+
     IEnumerator DeleteObjekt(GameObject gameObject)
     {
         yield return new WaitForSeconds(despawnDelay);
         Destroy(gameObject);
-        
     }
 
     private void Start()
