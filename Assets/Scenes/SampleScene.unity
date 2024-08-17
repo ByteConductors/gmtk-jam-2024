@@ -728,7 +728,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 359673958}
         m_TargetAssemblyTypeName: UI_WorkerQueue, Assembly-CSharp
-        m_MethodName: deleteDudeInLine
+        m_MethodName: DeleteDudeInLine
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
