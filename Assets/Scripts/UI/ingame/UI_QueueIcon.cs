@@ -17,4 +17,9 @@ public class UI_QueueIcon : MonoBehaviour
         image.color = color;
         Debug.Log(image.color);
     }
+
+    void Start()
+    {
+        transform.SetAsFirstSibling();
+    }
 }
