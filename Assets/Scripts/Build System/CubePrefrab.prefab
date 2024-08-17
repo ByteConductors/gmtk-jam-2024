@@ -179,8 +179,8 @@ GameObject:
   - component: {fileID: 3048195510743807314}
   - component: {fileID: 2548399260656930686}
   - component: {fileID: 7292355237773076002}
-  - component: {fileID: 2671289091093989713}
-  m_Layer: 0
+  - component: {fileID: 8275249212107770978}
+  m_Layer: 6
   m_Name: CubePrefrab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,16 +293,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colors:
   - {r: 1, g: 0, b: 0, a: 0}
-  - {r: 0.21888566, g: 1, b: 0, a: 0}
+  - {r: 0, g: 1, b: 0, a: 0}
   - {r: 0, g: 0, b: 1, a: 0}
-  - {r: 1, g: 1, b: 0, a: 0}
-  top: {fileID: 3014697376027307090}
-  bottom: {fileID: 713653412128418119}
-  left: {fileID: 2438602005733843382}
-  right: {fileID: 6444496388232835986}
-  front: {fileID: 5651729537684972922}
-  back: {fileID: 642997891156487908}
---- !u!54 &2671289091093989713
+  - {r: 1, g: 0, b: 1, a: 0}
+--- !u!54 &8275249212107770978
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,7 +319,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
