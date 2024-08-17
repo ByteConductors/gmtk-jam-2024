@@ -13,7 +13,10 @@ namespace Workers
     {
         public UnityEvent<WorkerColor> onNewWorkerSpaceRequested = new();
         public UnityEvent<WorkerColor> onWorkerQueueRelieved = new();
-        public float spaceRequestDelayInSeconds = 5;
+        public float minSpaceRequestDelayInSeconds = 0.2f;
+        public float maxSpaceRequestDelayInSeconds = 3;
+        public float streatchFunction = 40;
+        private long iTimer = 0;
 
         private readonly Queue<WorkerColor> _colorsQueue = new();
         public Queue<WorkerColor> WorkerQueue => _colorsQueue;
@@ -58,7 +61,7 @@ namespace Workers
         private void DoTimerCheck()
         {
             if (_nextSpaceRequestTime >= Time.time) return;
-            _nextSpaceRequestTime = spaceRequestDelayInSeconds + Time.time;
+            _nextSpaceRequestTime = Mathf.Exp(-(iTimer/streatchFunction))*maxSpaceRequestDelayInSeconds + minSpaceRequestDelayInSeconds + Time.time;
             if (!isPaused) SendNewSpaceRequest();
         }
 
