@@ -20,13 +20,21 @@ public class ScroeSystem : MonoBehaviour
 
     private TextMeshProUGUI _highScoreTextMeshPro;
     private TextMeshProUGUI _scoreTextMeshPro;
-    
+    private String HIGHSCORE = "highscore";
     private void Start()
     {
         BuildSystem.Instance.OnBlockFall.AddListener(BlockFallingScore);
         WorkerManager.Instance.onWorkerQueueRelieved.AddListener(_ => UpdateScore(workerScore));
         _highScoreTextMeshPro = highScore.GetComponent<TextMeshProUGUI>();
         _scoreTextMeshPro = score.GetComponent<TextMeshProUGUI>();
+        if (PlayerPrefs.HasKey(HIGHSCORE))
+        {
+            _highScore = PlayerPrefs.GetInt(HIGHSCORE);
+        }
+        else
+        {
+            _highScore = 0;
+        }
         UpdateScore(startScore);
     }
 
@@ -43,6 +51,7 @@ public class ScroeSystem : MonoBehaviour
         {
             _highScore = _score;
             _highScoreTextMeshPro.text = _score.ToString();
+            PlayerPrefs.SetInt(HIGHSCORE, _highScore);
         }
 
         if (_score <= 0)
