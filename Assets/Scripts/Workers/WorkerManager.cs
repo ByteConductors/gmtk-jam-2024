@@ -14,7 +14,7 @@ namespace Workers
         public UnityEvent<WorkerColor> onNewWorkerSpaceRequested = new();
         public UnityEvent<WorkerColor> onWorkerQueueRelieved = new();
         public float minSpaceRequestDelayInSeconds = 0.2f;
-        public float maxSpaceRequestDelayInSeconds = 3;
+        public float maxSpaceRequestDelayInSeconds = 6;
         public float streatchFunction = 40;
         private long iteration = 0;
 
@@ -34,10 +34,12 @@ namespace Workers
         public static WorkerManager Instance => _instance;
         private static WorkerManager _instance;
         
-        private Boolean isPaused = false;
+        private Boolean _isPaused = false;
     
         private void Awake()
         {
+            SetDifficulty(GetDifficulty());
+            
             DoSingletonCheck();
             RandomGenerator.Init();
             _nextSpaceRequestTime = Time.time;
@@ -46,7 +48,7 @@ namespace Workers
         private void Start()
         {
             GameManager.Instance.GameOver.AddListener(GameOver);
-            GameManager.Instance.GamePause.AddListener((paused) => isPaused = paused);
+            GameManager.Instance.GamePause.AddListener((paused) => _isPaused = paused);
         }
 
         private void FixedUpdate()
@@ -64,7 +66,7 @@ namespace Workers
             if (_nextSpaceRequestTime >= Time.time) return;
             _nextSpaceRequestTime = Mathf.Exp(-(iteration/streatchFunction))*maxSpaceRequestDelayInSeconds + minSpaceRequestDelayInSeconds + Time.time;
             iteration++;
-            if (!isPaused) SendNewSpaceRequest();
+            if (!_isPaused) SendNewSpaceRequest();
         }
 
         private void SendNewSpaceRequest()
@@ -103,5 +105,25 @@ namespace Workers
             _freeSpaceTable[color]++;
             RelieveQueue();
         }
+
+        
+        private readonly int[] _difficulties =
+        {
+            6, //Beginner
+            3, //Advanced
+            2  //Masochist
+        };
+        private string difficultyParameter = "Difficulty";
+        public void SetDifficulty(int difficulty)
+        {
+            PlayerPrefs.SetInt(difficultyParameter, difficulty);
+            maxSpaceRequestDelayInSeconds = _difficulties[difficulty];
+        }
+
+        public int GetDifficulty()
+        {
+            return PlayerPrefs.GetInt(difficultyParameter, 0);
+        }
+        
     }
 }
