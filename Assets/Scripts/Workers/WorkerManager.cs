@@ -14,7 +14,7 @@ namespace Workers
         public UnityEvent<WorkerColor> onNewWorkerSpaceRequested = new();
         public UnityEvent<WorkerColor> onWorkerQueueRelieved = new();
         public float minSpaceRequestDelayInSeconds = 0.2f;
-        public float maxSpaceRequestDelayInSeconds = 3;
+        public float maxSpaceRequestDelayInSeconds = 6;
         public float streatchFunction = 40;
         private long iteration = 0;
 
@@ -33,8 +33,6 @@ namespace Workers
 
         public static WorkerManager Instance => _instance;
         private static WorkerManager _instance;
-        
-        private Boolean isPaused = false;
     
         private void Awake()
         {
@@ -46,7 +44,6 @@ namespace Workers
         private void Start()
         {
             GameManager.Instance.GameOver.AddListener(GameOver);
-            GameManager.Instance.GamePause.AddListener((paused) => isPaused = paused);
         }
 
         private void FixedUpdate()
@@ -64,7 +61,7 @@ namespace Workers
             if (_nextSpaceRequestTime >= Time.time) return;
             _nextSpaceRequestTime = Mathf.Exp(-(iteration/streatchFunction))*maxSpaceRequestDelayInSeconds + minSpaceRequestDelayInSeconds + Time.time;
             iteration++;
-            if (!isPaused) SendNewSpaceRequest();
+            if (!GameManager.Instance.GetIsPaused()) SendNewSpaceRequest();
         }
 
         private void SendNewSpaceRequest()
@@ -103,5 +100,13 @@ namespace Workers
             _freeSpaceTable[color]++;
             RelieveQueue();
         }
+
+        public void SetDifficulty(int difficulty)
+        {
+            maxSpaceRequestDelayInSeconds = difficulty;
+        }
+
+
+        
     }
 }

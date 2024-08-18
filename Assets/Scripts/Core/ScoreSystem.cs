@@ -15,18 +15,20 @@ public class ScroeSystem : MonoBehaviour
     public GameObject highScore;
     public GameObject score;
     
-    
     private int _highScore;
     private int _score;
 
     private TextMeshProUGUI _highScoreTextMeshPro;
     private TextMeshProUGUI _scoreTextMeshPro;
+    private String HIGHSCORE = "highscore";
     private void Start()
     {
-        BuildSystem.BlockFalling += this.BlockFallingScore;
+        BuildSystem.Instance.OnBlockFall.AddListener(BlockFallingScore);
         WorkerManager.Instance.onWorkerQueueRelieved.AddListener(_ => UpdateScore(workerScore));
         _highScoreTextMeshPro = highScore.GetComponent<TextMeshProUGUI>();
         _scoreTextMeshPro = score.GetComponent<TextMeshProUGUI>();
+        _highScore = PlayerPrefs.HasKey(HIGHSCORE) ? PlayerPrefs.GetInt(HIGHSCORE) : startScore;
+        _highScoreTextMeshPro.text = _highScore.ToString();
         UpdateScore(startScore);
     }
 
@@ -42,7 +44,8 @@ public class ScroeSystem : MonoBehaviour
         if (_highScore < _score)
         {
             _highScore = _score;
-            _highScoreTextMeshPro.text = _score.ToString();
+            _highScoreTextMeshPro.text = _highScore.ToString();
+            PlayerPrefs.SetInt(HIGHSCORE, _highScore);
         }
 
         if (_score <= 0)
