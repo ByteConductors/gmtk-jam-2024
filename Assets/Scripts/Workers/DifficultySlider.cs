@@ -23,7 +23,7 @@ namespace Workers
                 SetDifficulty((int)value);
             });
             
-            WorkerManager.Instance?.SetDifficulty(GetDifficulty());
+            WorkerManager.Instance?.SetDifficulty(_difficulties[GetDifficulty()]);
         }
 
         private void OnEnable()
