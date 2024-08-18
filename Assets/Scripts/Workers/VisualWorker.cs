@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Color_Palettes;
+using Core;
 using UnityEngine;
 using Workers;
 
@@ -53,8 +54,11 @@ public class VisualWorker : MonoBehaviour
         float waitTime = (targetPos-currentPos).magnitude/5;
         while (elapsedTime < waitTime)
         {
-            gameObject.transform.position = Vector3.Lerp(currentPos, targetPos, (elapsedTime / waitTime));
-            elapsedTime += Time.deltaTime;
+            if (!GameManager.Instance.getIsPaused())
+            {
+                gameObject.transform.position = Vector3.Lerp(currentPos, targetPos, (elapsedTime / waitTime));
+                elapsedTime += Time.deltaTime;
+            }
             yield return null;
         }
         gameObject.transform.position = targetPos;
