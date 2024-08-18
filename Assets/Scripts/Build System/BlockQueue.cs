@@ -68,6 +68,7 @@ namespace Build_System
         {
             _blocks.Remove(block);
             OnBlockDestroy.Invoke(block);
+            SelectedBlock = null;
         }
 
         private void Start()
