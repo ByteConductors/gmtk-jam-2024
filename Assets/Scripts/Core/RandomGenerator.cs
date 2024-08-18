@@ -34,7 +34,7 @@ public static class RandomGenerator
         }
 
         WorkerColor nextColor;
-        if (max.Item1 - min.Item1 > MAX_ALLOWED_AHEAD) nextColor = min.Item2;
+        if (max.Item1 - min.Item1 >= MAX_ALLOWED_AHEAD) nextColor = min.Item2;
         else nextColor = (WorkerColor)(random.Next() % 4);
         
         colors[nextColor]++;
