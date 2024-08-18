@@ -54,7 +54,7 @@ public class VisualWorker : MonoBehaviour
         float waitTime = (targetPos-currentPos).magnitude/5;
         while (elapsedTime < waitTime)
         {
-            if (!GameManager.Instance.getIsPaused())
+            if (!GameManager.Instance.GetIsPaused())
             {
                 gameObject.transform.position = Vector3.Lerp(currentPos, targetPos, (elapsedTime / waitTime));
                 elapsedTime += Time.deltaTime;

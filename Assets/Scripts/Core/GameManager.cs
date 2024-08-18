@@ -45,7 +45,6 @@ namespace Core
         {
             GameOver.Invoke(Reason);
             _isPaused = true;
-            GamePause.Invoke(_isPaused);
         }
 
         private bool _isPaused = false;
@@ -56,7 +55,7 @@ namespace Core
             GamePause.Invoke(_isPaused);
         }
         
-        public Boolean getIsPaused() => _isPaused;
+        public Boolean GetIsPaused() => _isPaused;
     }
 }
 

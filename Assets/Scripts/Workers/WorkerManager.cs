@@ -33,13 +33,9 @@ namespace Workers
 
         public static WorkerManager Instance => _instance;
         private static WorkerManager _instance;
-        
-        private Boolean _isPaused = false;
     
         private void Awake()
         {
-            SetDifficulty(GetDifficulty());
-            
             DoSingletonCheck();
             RandomGenerator.Init();
             _nextSpaceRequestTime = Time.time;
@@ -48,7 +44,6 @@ namespace Workers
         private void Start()
         {
             GameManager.Instance.GameOver.AddListener(GameOver);
-            GameManager.Instance.GamePause.AddListener((paused) => _isPaused = paused);
         }
 
         private void FixedUpdate()
@@ -66,7 +61,7 @@ namespace Workers
             if (_nextSpaceRequestTime >= Time.time) return;
             _nextSpaceRequestTime = Mathf.Exp(-(iteration/streatchFunction))*maxSpaceRequestDelayInSeconds + minSpaceRequestDelayInSeconds + Time.time;
             iteration++;
-            if (!_isPaused) SendNewSpaceRequest();
+            if (!GameManager.Instance.GetIsPaused()) SendNewSpaceRequest();
         }
 
         private void SendNewSpaceRequest()
@@ -106,24 +101,12 @@ namespace Workers
             RelieveQueue();
         }
 
-        
-        private readonly int[] _difficulties =
-        {
-            6, //Beginner
-            3, //Advanced
-            2  //Masochist
-        };
-        private string difficultyParameter = "Difficulty";
         public void SetDifficulty(int difficulty)
         {
-            PlayerPrefs.SetInt(difficultyParameter, difficulty);
-            maxSpaceRequestDelayInSeconds = _difficulties[difficulty];
+            maxSpaceRequestDelayInSeconds = difficulty;
         }
 
-        public int GetDifficulty()
-        {
-            return PlayerPrefs.GetInt(difficultyParameter, 0);
-        }
+
         
     }
 }
