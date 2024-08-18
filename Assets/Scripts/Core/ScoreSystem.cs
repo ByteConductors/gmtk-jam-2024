@@ -15,15 +15,15 @@ public class ScroeSystem : MonoBehaviour
     public GameObject highScore;
     public GameObject score;
     
-    
     private int _highScore;
     private int _score;
 
     private TextMeshProUGUI _highScoreTextMeshPro;
     private TextMeshProUGUI _scoreTextMeshPro;
+    
     private void Start()
     {
-        BuildSystem.BlockFalling += this.BlockFallingScore;
+        BuildSystem.Instance.OnBlockFall.AddListener(BlockFallingScore);
         WorkerManager.Instance.onWorkerQueueRelieved.AddListener(_ => UpdateScore(workerScore));
         _highScoreTextMeshPro = highScore.GetComponent<TextMeshProUGUI>();
         _scoreTextMeshPro = score.GetComponent<TextMeshProUGUI>();
