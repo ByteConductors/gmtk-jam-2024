@@ -10,7 +10,7 @@ using Workers;
 public class ScroeSystem : MonoBehaviour
 {
     public int workerScore = 10;
-    public int blockFallScore = -20;
+    public int blockFallScore = -10;
     public int startScore = 10;
     public GameObject highScore;
     public GameObject score;
@@ -24,6 +24,7 @@ public class ScroeSystem : MonoBehaviour
     private void Start()
     {
         BuildSystem.Instance.OnBlockFall.AddListener(BlockFallingScore);
+        BuildSystem.Instance.OnBlockBuild.AddListener(BlockBuildingScore);
         WorkerManager.Instance.onWorkerQueueRelieved.AddListener(_ => UpdateScore(workerScore));
         _highScoreTextMeshPro = highScore.GetComponent<TextMeshProUGUI>();
         _scoreTextMeshPro = score.GetComponent<TextMeshProUGUI>();
@@ -32,9 +33,14 @@ public class ScroeSystem : MonoBehaviour
         UpdateScore(startScore);
     }
 
-    private void BlockFallingScore()
+    private void BlockFallingScore(Vector3Int position)
     {
-        UpdateScore(blockFallScore);
+        UpdateScore(blockFallScore * (position.y+1));
+    }
+
+    private void BlockBuildingScore(Vector3Int position)
+    {
+        UpdateScore(position.y * 2);
     }
 
     private void UpdateScore(int val)
