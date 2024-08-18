@@ -23,8 +23,9 @@ public class BuildSystem : MonoBehaviour
     public BlockQueue Queue;
 
     private Vector3 point = Vector3.zero;
-    
-    public UnityEvent OnBlockFall = new ();
+
+    public UnityEvent<Vector3Int> OnBlockBuild = new();
+    public UnityEvent<Vector3Int> OnBlockFall = new ();
     public float despawnDelay = 1.5f;
     // Update is called once per frame
 
@@ -61,6 +62,8 @@ public class BuildSystem : MonoBehaviour
                     
                     Queue.RemoveBlock(Queue.SelectedBlock);
                     newCube.GetComponent<AudioSource>().Play();
+                    
+                    OnBlockBuild.Invoke(newCube.OnGridLocation);
 
                     if (!Tower.Instance.IsSupported(newCube.OnGridLocation, out var unsupportedBlocks))
                     {
@@ -101,7 +104,7 @@ public class BuildSystem : MonoBehaviour
             Debug.Log(position.ToString());
             Tower.Instance.components[position].rb.isKinematic = false;
             Tower.Instance.components.Remove(position);
-            OnBlockFall.Invoke();
+            OnBlockFall.Invoke(position);
 
             StartCoroutine(DeleteObjekt(_cube.gameObject));
         }
