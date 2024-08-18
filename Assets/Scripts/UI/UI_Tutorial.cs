@@ -8,6 +8,10 @@ using UnityEngine.UI;
 public class UI_Tutorial : MonoBehaviour
 {
     [SerializeField] private Button button;
+    [SerializeField] private Texture2D[] textures;
+    [SerializeField] private RawImage image;
+    private int frameIndex = 0;
+    private int frameCount = 0;
 
     private void Awake()
     {
@@ -22,5 +26,20 @@ public class UI_Tutorial : MonoBehaviour
                 SceneManager.LoadScene("GameScene");
             }
         });
+
+        frameCount = textures.Length * 4;
+    }
+
+    private void FixedUpdate()
+    {
+        DoTutorialAnimation();
+    }
+
+    void DoTutorialAnimation()
+    {
+        if (frameIndex >= frameCount)
+            frameIndex = 0;
+        else frameIndex++;
+        image.texture = textures[frameIndex / 4];
     }
 }
