@@ -53,7 +53,7 @@ namespace Workers
             DoTimerCheck();
         }
 
-        private void GameOver()
+        private void GameOver(string reason)
         {
             _colorsQueue.Clear();
         }

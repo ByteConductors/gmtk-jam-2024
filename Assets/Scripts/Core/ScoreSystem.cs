@@ -47,7 +47,7 @@ public class ScroeSystem : MonoBehaviour
 
         if (_score <= 0)
         {
-            GameManager.Instance.TriggerGameOver();
+            GameManager.Instance.TriggerGameOver("Too many blocks fell down.");
         }
     }
 }

@@ -10,9 +10,10 @@ namespace UI.ingame
 
         [SerializeField] public GameObject settings;
     
-        void UI_GameOver()
+        void UI_GameOver(string reason)
         {
             Debug.Log("Game Over");
+            PlayerPrefs.SetString("GameOver", reason);
             SceneManager.LoadScene("GameOverOverlay", LoadSceneMode.Additive);
             GameManager.Instance.GameOver.RemoveListener(UI_GameOver);  
         }

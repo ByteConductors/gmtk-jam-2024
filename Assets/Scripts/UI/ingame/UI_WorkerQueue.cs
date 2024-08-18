@@ -35,7 +35,7 @@ namespace UI.ingame
             }
         }
 
-        void OnGameOver()
+        void OnGameOver(string reason)
         {
             Debug.Log("Game Over - from WorkerQueue");
             WorkerManager.Instance.onNewWorkerSpaceRequested.RemoveListener(NewDudeInLine);
