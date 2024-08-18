@@ -49,6 +49,7 @@ public class BuildSystem : MonoBehaviour
                     Mathf.Round(hitData.normal.z));
                 var cube = hitData.transform.GetComponent<BuildingCube>();
                 var selectedQueueBlock = Queue.GetCurrentSelectedBlock();
+                if (selectedQueueBlock == null) return;
                 if (cube.placeable(direction,selectedQueueBlock.Shape))
                 {
                     
