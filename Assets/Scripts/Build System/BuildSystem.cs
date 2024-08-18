@@ -19,15 +19,13 @@ public class BuildSystem : MonoBehaviour
 
     private Vector3 point = Vector3.zero;
     
-    private Boolean isPaused = false;
-    
     public delegate void BlockFall();
     public static event BlockFall BlockFalling;
     public float despawnDelay = 1.5f;
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isPaused)
+        if (Input.GetMouseButtonDown(0) && !GameManager.Instance.GetIsPaused())
         {
             Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
             Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
@@ -111,10 +109,5 @@ public class BuildSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(despawnDelay);
         Destroy(gameObject);
-    }
-
-    private void Start()
-    {
-        GameManager.Instance.GamePause.AddListener((paused) => isPaused = paused);
     }
 }
