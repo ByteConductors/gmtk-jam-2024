@@ -14,18 +14,11 @@ public class CameraMovment : MonoBehaviour
     public GameObject cameras;
     private Vector3 motion;
     private Vector3 rotation;
-
-    private Boolean isPaused = false;
-    
-    private void Start()
-    {
-        GameManager.Instance.GamePause.AddListener((paused) => isPaused = paused);
-    }
     
     // Update is called once per frame
     void Update()
     {
-        if (isPaused) return;
+        if (GameManager.Instance.GetIsPaused()) return;
         
         if (Input.GetButton("Fire1"))
         {

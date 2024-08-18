@@ -368,6 +368,9 @@ MonoBehaviour:
     m_Bits: 64
   breakForce: 100
   Queue: {fileID: 100854066}
+  OnBlockFall:
+    m_PersistentCalls:
+      m_Calls: []
   despawnDelay: 1.5
 --- !u!4 &100854069
 Transform:
@@ -1546,6 +1549,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Core.GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 211582264781240521, guid: d4f06c581e1521441a8ce4232148863a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 475077723693296343, guid: d4f06c581e1521441a8ce4232148863a, type: 3}
       propertyPath: slider
       value: 
@@ -1572,6 +1579,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1148574921971777531, guid: d4f06c581e1521441a8ce4232148863a, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626146408261786272, guid: d4f06c581e1521441a8ce4232148863a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626146408261786272, guid: d4f06c581e1521441a8ce4232148863a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626146408261786272, guid: d4f06c581e1521441a8ce4232148863a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626146408261786272, guid: d4f06c581e1521441a8ce4232148863a, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1741675141025397115, guid: d4f06c581e1521441a8ce4232148863a, type: 3}
@@ -1752,6 +1775,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6125975364462250616, guid: d4f06c581e1521441a8ce4232148863a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692364841882536503, guid: d4f06c581e1521441a8ce4232148863a, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7523186490949899772, guid: d4f06c581e1521441a8ce4232148863a, type: 3}
