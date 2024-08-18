@@ -4955,7 +4955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7292355237773076002, guid: 0a1d6d72aa93e9642978ea2d5130ba3f, type: 3}
       propertyPath: colorIndex
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7292355237773076002, guid: 0a1d6d72aa93e9642978ea2d5130ba3f, type: 3}
       propertyPath: isInitialBlock
