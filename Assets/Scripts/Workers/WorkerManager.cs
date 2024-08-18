@@ -39,6 +39,7 @@ namespace Workers
         private void Awake()
         {
             DoSingletonCheck();
+            RandomGenerator.Init();
             _nextSpaceRequestTime = Time.time;
         }
 
@@ -68,7 +69,7 @@ namespace Workers
 
         private void SendNewSpaceRequest()
         {
-            var color = (WorkerColor)Random.Range(0, 4);
+            var color = RandomGenerator.GetNextWorkerColor();
             _colorsQueue.Enqueue(color);
             onNewWorkerSpaceRequested.Invoke(color);
             RelieveQueue();
