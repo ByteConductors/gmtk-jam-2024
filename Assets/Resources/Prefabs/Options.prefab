@@ -91,19 +91,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1965407927600894894}
-        m_TargetAssemblyTypeName: AudioMixerLevels, Assembly-CSharp
-        m_MethodName: OnSliderChange
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1965407927600894894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,8 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2485019df7bca794b8afa1f233f55998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: d3df817ee0dfb854eb903c5587396cd8, type: 2}
   parameter: VolumeMusic
+  slider: {fileID: 1741675141025397115}
 --- !u!1 &302392154340298099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,19 +1094,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 475077723693296343}
-        m_TargetAssemblyTypeName: AudioMixerLevels, Assembly-CSharp
-        m_MethodName: OnSliderChange
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &475077723693296343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1131,8 +1107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2485019df7bca794b8afa1f233f55998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: d3df817ee0dfb854eb903c5587396cd8, type: 2}
   parameter: VolumeSFX
+  slider: {fileID: 8016671921274801465}
 --- !u!1 &5162138905292574465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,19 +1484,7 @@ MonoBehaviour:
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6111488828786961116}
-        m_TargetAssemblyTypeName: AudioMixerLevels, Assembly-CSharp
-        m_MethodName: OnSliderChange
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &6111488828786961116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1533,8 +1497,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2485019df7bca794b8afa1f233f55998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 24100000, guid: d3df817ee0dfb854eb903c5587396cd8, type: 2}
   parameter: VolumeMaster
+  slider: {fileID: 9098551715135741760}
 --- !u!1 &5719944020306325311
 GameObject:
   m_ObjectHideFlags: 0

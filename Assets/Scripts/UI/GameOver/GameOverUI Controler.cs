@@ -1,10 +1,17 @@
+using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 namespace UI.GameOver
 {
     public class GameOverUI : MonoBehaviour
     {
+        [SerializeField] TextMeshProUGUI text;
+
+        private void Start()
+        {
+            text.text = PlayerPrefs.GetString("GameOver", "You lost");
+        }
 
         public void PlayButton()
         {

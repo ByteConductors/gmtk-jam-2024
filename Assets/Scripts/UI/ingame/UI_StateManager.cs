@@ -9,10 +9,15 @@ namespace UI.ingame
     {
 
         [SerializeField] public GameObject settings;
-    
-        void UI_GameOver()
+        
+        private Boolean isGameOver = false;
+        
+        void UI_GameOver(string reason)
         {
+            isGameOver = true;
+            
             Debug.Log("Game Over");
+            PlayerPrefs.SetString("GameOver", reason);
             SceneManager.LoadScene("GameOverOverlay", LoadSceneMode.Additive);
             GameManager.Instance.GameOver.RemoveListener(UI_GameOver);  
         }
@@ -29,7 +34,7 @@ namespace UI.ingame
         public void UI_GamePause(Boolean isPaused)
         {
             Debug.Log("Game Pause - State Manager");
-            settings.SetActive(isPaused);
+            if (!isGameOver) settings.SetActive(isPaused);
         }
 
     }

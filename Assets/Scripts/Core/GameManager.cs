@@ -12,7 +12,7 @@ namespace Core
         private static GameManager _instance;
         public static GameManager Instance => _instance;
         
-        public readonly UnityEvent GameOver = new ();
+        public readonly UnityEvent<String> GameOver = new ();
         public readonly UnityEvent GameBegin = new ();
         public readonly UnityEvent<Boolean> GamePause = new ();
 
@@ -38,12 +38,14 @@ namespace Core
         private void CheckGameOver()
         {
             if (WorkerManager.Instance?.WorkerQueue.Count < maxQueueLength) return;
-            TriggerGameOver();
+            TriggerGameOver("Your queue is too long");
         }
 
-        public void TriggerGameOver()
+        public void TriggerGameOver(string Reason)
         {
-            GameOver.Invoke();
+            GameOver.Invoke(Reason);
+            _isPaused = true;
+            GamePause.Invoke(_isPaused);
         }
 
         private bool _isPaused = false;
@@ -53,6 +55,8 @@ namespace Core
             _isPaused = !_isPaused;
             GamePause.Invoke(_isPaused);
         }
+        
+        public Boolean getIsPaused() => _isPaused;
     }
 }
 
