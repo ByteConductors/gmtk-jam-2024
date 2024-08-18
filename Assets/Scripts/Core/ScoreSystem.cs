@@ -27,7 +27,8 @@ public class ScroeSystem : MonoBehaviour
         WorkerManager.Instance.onWorkerQueueRelieved.AddListener(_ => UpdateScore(workerScore));
         _highScoreTextMeshPro = highScore.GetComponent<TextMeshProUGUI>();
         _scoreTextMeshPro = score.GetComponent<TextMeshProUGUI>();
-        _highScore = PlayerPrefs.HasKey(HIGHSCORE) ? PlayerPrefs.GetInt(HIGHSCORE) : 0;
+        _highScore = PlayerPrefs.HasKey(HIGHSCORE) ? PlayerPrefs.GetInt(HIGHSCORE) : startScore;
+        _highScoreTextMeshPro.text = _highScore.ToString();
         UpdateScore(startScore);
     }
 
@@ -43,7 +44,7 @@ public class ScroeSystem : MonoBehaviour
         if (_highScore < _score)
         {
             _highScore = _score;
-            _highScoreTextMeshPro.text = _score.ToString();
+            _highScoreTextMeshPro.text = _highScore.ToString();
             PlayerPrefs.SetInt(HIGHSCORE, _highScore);
         }
 
