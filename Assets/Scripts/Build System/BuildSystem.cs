@@ -6,11 +6,16 @@ using Build_System;
 using Core;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 using Workers;
 
 public class BuildSystem : MonoBehaviour
 {
+    private static BuildSystem _instance;
+    public static BuildSystem Instance => _instance;
+    
+    
     public Camera playerCamera;
     [FormerlySerializedAs("cube")] public GameObject cubePrefab;
     public LayerMask sideLayerMask;
@@ -19,10 +24,15 @@ public class BuildSystem : MonoBehaviour
 
     private Vector3 point = Vector3.zero;
     
-    public delegate void BlockFall();
-    public static event BlockFall BlockFalling;
+    public UnityEvent OnBlockFall = new ();
     public float despawnDelay = 1.5f;
     // Update is called once per frame
+
+    private void Awake()
+    {
+        _instance = this;
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !GameManager.Instance.GetIsPaused())
@@ -91,10 +101,7 @@ public class BuildSystem : MonoBehaviour
             Debug.Log(position.ToString());
             Tower.Instance.components[position].rb.isKinematic = false;
             Tower.Instance.components.Remove(position);
-            if (BlockFalling != null)
-            {
-                BlockFalling();
-            }
+            OnBlockFall.Invoke();
 
             StartCoroutine(DeleteObjekt(_cube.gameObject));
         }
